@@ -58,6 +58,9 @@ public class ClassVisitor extends EmptyVisitor {
     }
 
     public void visitJavaClass(JavaClass jc) {
+        for (String interfacename : jc.getInterfaceNames()) {
+            System.out.println("I:" + jc.getClassName() + " " + interfacename);
+        }
         jc.getConstantPool().accept(this);
         Method[] methods = jc.getMethods();
         for (int i = 0; i < methods.length; i++) {
