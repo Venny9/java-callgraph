@@ -59,7 +59,7 @@ public class ClassVisitor extends EmptyVisitor {
 
     public void visitJavaClass(JavaClass jc) {
         for (String interfacename : jc.getInterfaceNames()) {
-            System.out.println("I:" + jc.getClassName() + " " + interfacename);
+            System.out.println("I:" + interfacename + " " + jc.getClassName());
         }
         jc.getConstantPool().accept(this);
         Method[] methods = jc.getMethods();
@@ -80,7 +80,7 @@ public class ClassVisitor extends EmptyVisitor {
             if (constant.getTag() == 7) {
                 String referencedClass = 
                     constantPool.constantToString(constant);
-                System.out.println(String.format(classReferenceFormat, referencedClass));
+                //System.out.println(String.format(classReferenceFormat, referencedClass));
             }
         }
     }
