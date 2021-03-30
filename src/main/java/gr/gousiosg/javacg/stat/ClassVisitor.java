@@ -58,6 +58,10 @@ public class ClassVisitor extends EmptyVisitor {
     }
 
     public void visitJavaClass(JavaClass jc) {
+        if (!jc.getSuperclassName().equals("java.lang.Object")
+                && !jc.getSuperclassName().equals("java.lang.Enum")) {
+            System.out.println("P:" + jc.getSuperclassName() + " " + jc.getClassName());
+        }
         for (String interfacename : jc.getInterfaceNames()) {
             System.out.println("I:" + interfacename + " " + jc.getClassName());
         }
@@ -78,8 +82,8 @@ public class ClassVisitor extends EmptyVisitor {
             if (constant == null)
                 continue;
             if (constant.getTag() == 7) {
-                String referencedClass = 
-                    constantPool.constantToString(constant);
+                String referencedClass =
+                        constantPool.constantToString(constant);
                 //System.out.println(String.format(classReferenceFormat, referencedClass));
             }
         }
