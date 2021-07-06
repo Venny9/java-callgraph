@@ -60,10 +60,12 @@ public class ClassVisitor extends EmptyVisitor {
     public void visitJavaClass(JavaClass jc) {
         if (!jc.getSuperclassName().equals("java.lang.Object")
                 && !jc.getSuperclassName().equals("java.lang.Enum")) {
-            System.out.println("P:" + jc.getSuperclassName() + " " + jc.getClassName());
+            String s = "P:" + jc.getSuperclassName() + " " + jc.getClassName();
+            methodCalls.add(s);
         }
         for (String interfacename : jc.getInterfaceNames()) {
-            System.out.println("I:" + interfacename + " " + jc.getClassName());
+            String s = "I:" + interfacename + " " + jc.getClassName();
+            methodCalls.add(s);
         }
         jc.getConstantPool().accept(this);
         Method[] methods = jc.getMethods();
